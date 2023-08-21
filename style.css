@@ -1,0 +1,609 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-family: 'Bangers', sans-serif;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* load beam start */
+.loadscreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  max-width: 100%;
+  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  color: #fff;
+  z-index: 10;
+}
+
+.loadscreen h1 {
+  position: relative;
+  color: #fff;
+  z-index: 11;
+  font-size: 70px;
+  margin-bottom: 10px;
+}
+
+.loadscreen img {
+  position: relative;
+  z-index: 11;
+  max-width: 50%;
+  height: auto;
+}
+
+.loadbeamHeading {
+  z-index: 14;
+}
+
+.loadbeam {
+  position: relative;
+  width: 80vw;
+  height: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.loadbeam-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: rgb(64, 175, 175);
+  transition: width 0.3s ease;
+  border-radius: 10px;
+}
+
+.loadbeam-percent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+/* load beam end */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right:0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.background-gameplay {
+  height: 100vh;
+  width: 100vw;
+}
+
+.background-gameplay img {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+}
+
+canvas {
+  z-index: 0;
+  display: block;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+}
+
+.parent-container {
+  position: absolute;
+}
+
+.start-button {
+  /* position: relative;
+  top: 90px; */
+  animation: float 3s ease-in-out infinite;
+  opacity: 0.95;
+}
+
+.start-instruction-images {
+  display: flex;
+}
+
+.heading h1 {
+  position: relative;
+  bottom: 50px;
+  text-align: center;
+  font-size: 80px;
+  color: #fff;
+  text-shadow: 4px 19px 21px rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.start-button img {
+  height: 10vh;
+  transition: 225ms ease-in-out;
+  margin: 20px;
+}
+
+.start-button img:hover {
+  transform: scale(1.05);
+}
+
+.settings {
+  position: absolute;
+  top: 23px;
+  right: 30px;
+  width: 80px;
+  filter: invert(99%) sepia(4%) saturate(760%) hue-rotate(217deg) brightness(118%) contrast(100%);
+}
+
+#settings-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  z-index: 5;
+  top: 35%;
+  left: 40%;
+  color: #fff;
+  text-shadow: -1px 0 black, 0 2px black, 1px 0 black, 0 -1px black;
+  /* border: 2px solid #fff; */
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+  padding: 25px;
+}
+
+#settings-container img {
+  height: 30px;
+  width: 30px;
+  color: #fff;
+}
+
+.setting-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-bottom: 50px;
+}
+
+.hide-settings {
+  font-size: 32px;
+}
+
+.settings-game {
+  position: absolute;
+}
+
+.settings-game img {
+  filter: invert(99%) sepia(4%) saturate(760%) hue-rotate(217deg) brightness(118%) contrast(100%);
+  width: 35px;
+}
+
+.settings-game:hover {
+  opacity: .9;
+}
+
+.instruction {
+  position: relative;
+  max-width: 100%;
+  max-height: 100vh;
+  /* border: 2px solid #fff; */
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.image-container {
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
+  width: auto;
+  position: relative;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Hide all images except the first one */
+.image-container img:not(:first-child) {
+  display: none;
+}
+
+.image-container-ingame img:not(:first-child) {
+  display: none;
+}
+
+
+/* Style for the arrow */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* Style for the next arrow */
+.next {
+  right: 10px;
+  color: #fff;
+  font-size: 30px;
+  transition: 225ms ease-in-out;
+}
+
+/* Style for the previous arrow */
+.prev {
+  left: 10px;
+  color: #fff;
+  font-size: 30px;
+  transition: 225ms ease-in-out;
+}
+
+.instruction-ingame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  border: 2px solid #fff;
+  border-radius: 5px;
+  max-width: 650px;
+  max-height: 360px;
+  min-width: 500px;
+  min-height: 300px;
+}
+
+
+.movement-heading {
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 25px;
+}
+
+.movement-heading h1 {
+  display: inline-block;
+}
+
+.instruction img {
+  max-width: 650px;
+    max-height: 360px;
+    min-width: 500px;
+    min-height: 300px;
+}
+
+.instruction-ingame img {
+  max-width: 100%;
+  max-height: 100vh;
+  height: auto;
+}
+
+.endscreen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  text-align: center;
+}
+
+#endscreen-win {
+  gap: 20px;
+}
+
+.gameover-container img,
+.sharky-dead-container img,
+.tryagain-menu-container img {
+  max-width: 90%;
+  height: auto;
+}
+
+.sharky-dead {
+  height: 30%;
+  width: 30%;
+}
+
+.win-img {
+  height: auto;
+  width: 70vw;
+}
+
+.tilt-device-container {
+  background: url('img/image-startscreen.png');
+  z-index: 10;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+
+}
+
+.tilt-device-container h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 40px;
+  text-shadow: 4px 19px 21px rgba(0, 0, 0, 0.5);
+}
+
+.tilt-device-container img {
+  height: 100px;
+  filter: brightness(0) invert(1);
+  animation: rotatePhone 2s infinite;
+}
+
+@keyframes rotatePhone {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(90deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Mobile Buttons Start */
+.panel {
+  z-index: 4;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
+
+/*Panel Top Start*/
+.panel-top {
+  z-index: 9999;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  margin: 10px;
+  gap: 20px;
+}
+
+.panel-top img {
+  height: 30px;
+}
+
+/*Panel Top End*/
+
+
+.panel-right {
+  display: flex;
+  gap: 20px;
+}
+
+.panel-left img {
+  height: 40px;
+  width: 40px;
+}
+
+.panel-right img {
+  height: 30px;
+  width: 30px;
+}
+
+.arrow-button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: #eaeaea;
+  color: #333333;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: rgb(108, 225, 230);
+  color: rgb(100, 29, 167);
+}
+
+.arrow-button:hover {
+  background-color: #cccccc;
+}
+
+.upButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.bottomButtonsContainer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+@media (min-width: 1920px) {
+  .background-image img {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+/* @media (min-width: 1800px) {
+  .instruction-ingame img {
+    position: relative;
+    bottom: 50px;
+  }
+} */
+
+/* Media for  endscreen and loadscreen*/
+@media (max-height: 720px) {
+  .loadscreen h1 {
+    font-size: 40px;
+  }
+
+  .loadscreen img {
+    max-width: 25%;
+  }
+
+  .loadbeam {
+    height: 10px;
+  }
+
+  .endscreen img {
+    width: 300px;
+  }
+
+  .instruction img {
+    height: 80vh;
+  }
+
+  .instruction-ingame {
+    height: 70vh;
+    width: 70vw;
+  }
+
+  .instruction-ingame img {
+    position: relative;
+    bottom: 70px;
+  }
+}
+
+/* Mobile Buttons End */
+@media only screen and (max-width: 720px) {
+  #canvas {
+    width: 100%;
+  }
+
+  .heading h1 {
+    font-size: 60px;
+  }
+
+  .start-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .start-button img {
+    height: 6vh;
+  }
+
+  .endscreen img {
+    width: 200px;
+  }
+  .instruction-ingame img {
+    position: relative;
+    bottom: 50px;
+  }
+}
+
+@media only screen and (max-height: 480px) {
+  #canvas {
+    height: 100vh;
+    width: 100vw;
+    top: auto;
+    left: auto;
+  }
+
+  .start-button img {
+    height: 15vh;
+  }
+
+  .endscreen img {
+    width: 150px;
+  }
+  .instruction-ingame img {
+    position: relative;
+    bottom: 70px;
+  }
+}
+
+@media only screen and (max-width: 480px), (max-height: 479px) {
+  .panel {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .panel-top {
+    display: none;
+  }
+}
+
+
+
+@media (min-width: 480px) {
+  .tilt-device-container {
+    display: none;
+  }
+}

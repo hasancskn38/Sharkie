@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharky</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/icons/shark-color-icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+</head>
+
+<body onload="init()">
+    <!-- Overlay Start -->
+    <div id="overlay" class="overlay d-none"></div>
+    <!-- Overlay End -->
+
+    <!-- Start Screen Image Start -->
+    <div id="start-screen" class="background-image">
+        <img src="img/image-startscreen.png" alt="">
+    </div>
+    <!-- Start Screen Image End -->
+
+
+    <div class="parent-container">
+
+        <div class="background-gameplay d-none" id="background-gameplay">
+            <img src="img/3. Background/Legacy/Dark/D.png" alt="">
+        </div>
+
+
+        <div id="start-instruction-container" class="start-button">
+            <div class="heading" id="heading">
+                <h1>SHARKY</h1>
+            </div>
+            <div class="start-instruction-images">
+                <img id="start-button cursor" onclick="startGame()" class="cursor" src="img/6.Botones/Start/2.png"
+                    alt="">
+                <img id="show-settings" class="cursor" src="img/6.Botones/Start/how-to-play-btn.png" alt="">
+            </div>
+        </div>
+        <!-- Start Screen End -->
+        <div class="d-none" id="settings-container">
+            <div class="setting-heading">
+                <h1>Settings</h1>
+                <div id="hide-settings" class="hide-settings cursor">x</div>
+            </div>
+            <div class="settings-option cursor">
+                <img class="cursor" src="img/icons/sound-full-icon.png" alt="">
+                <h4>SOUND</h4>
+            </div>
+            <div class="settings-option cursor">
+                <img class="cursor" src="img/icons/expand-icon.png" alt="">
+                <h4>FULLSCREEN</h4>
+            </div>
+        </div>
+
+        <div class="instruction d-none" id="instruction">
+            <div class="movement-heading">
+                <h1 class="cursor" id="hide-instructions">x</h1>
+            </div>
+            <div class="image-container">
+                <img src="img/6.Botones/Instructions 0.png" alt="">
+                <img src="img/6.Botones/Instructions 1.png" alt="">
+                <img src="img/6.Botones/Instructions 2.png" alt="">
+                <!-- Next and previous arrows -->
+                <div class="arrow next cursor" onclick="showNextImage()">&#8594;</div>
+                <div class="arrow prev cursor" onclick="showPreviousImage()">&#8592;</div>
+            </div>
+        </div>
+
+        <div class="instruction-ingame d-none" id="instruction-ingame">
+            <div class="movement-heading">
+                <h1 class="cursor" id="hide-instructions-ingame">x</h1>
+            </div>
+
+            <div class="image-container-ingame">
+                <img src="img/6.Botones/Instructions 0.png" alt="">
+                <img src="img/6.Botones/Instructions 1.png" alt="">
+                <img src="img/6.Botones/Instructions 2.png" alt="">
+                <!-- Next and previous arrows -->
+                <div class="arrow next cursor" onclick="showNextImageInGame()">&#8594;</div>
+                <div class="arrow prev cursor" onclick="showPreviousImageInGame()">&#8592;</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Endscreen if loose -->
+    <div class="d-none endscreen" id="endscreen">
+        <div class="gameover-container">
+            <img src="img/6.Botones/Tittles/Game Over/Recurso 13.png" alt="">
+        </div>
+        <div class="sharky-dead-container">
+            <img class="sharky-dead" src="img/1.Sharkie/6.dead/1.Poisoned/12.png" alt="">
+        </div>
+        <div class="tryagain-menu-container">
+            <img class="d-none tryagain-button cursor" id="tryagainbutton" onclick="startGame()"
+                src="img/6.Botones/Try again/Recurso 15.png" alt="">
+        </div>
+    </div>
+
+
+    <!-- Endscreen if win -->
+    <div class="endscreen d-none" id="endscreen-win">
+        <img class="win-img" src="img/6.Botones/Tittles/You win/Mesa de trabajo 1.png" alt="">
+        <img id="start-button" class="tryagain-button d-none cursor" onclick="startGame()" class="cursor"
+            src="img/6.Botones/Start/2.png" alt="">
+    </div>
+
+    <div class="tilt-device-container">
+        <h1>Please rotate your device</h1>
+        <img src="img/icons/mobile-icon.png" alt="">
+    </div>
+
+    <div class="loadscreen d-none" id="loadscreen">
+        <div class="loadscreen-heading">
+            <h1>Sharky is preparing</h1>
+        </div>
+        <div class="loadscreen-image">
+            <img src="img/1.Sharkie/1.IDLE/1.png" alt="">
+        </div>
+        <div id="loadbeam" class="loadbeam"></div>
+    </div>
+
+    <div id="panel-container" class="panel-container">
+
+        <canvas allowfullscreen class="d-none" id="canvas" width="720px" height="480px"></canvas>
+        <div id="panel" class="panel d-none">
+            <div class="panel-left">
+                <div class="upButtonContainer">
+                    <button id="upButton" class="arrow-button"><img src="img/icons/angle-circle-up-icon.png" alt=""></button>
+                </div>
+                <br>
+                <div class="bottomButtonsContainer">
+                    <button id="leftButton" class="arrow-button"><img src="img/icons/angle-circle-left-icon.png" alt=""></button>
+                    <button id="downButton" class="arrow-button"><img src="img/icons/angle-circle-down-icon.png" alt=""></button>
+                    <button id="rightButton" class="arrow-button"><img src="img/icons/angle-circle-right-icon.png" alt=""></button>
+                </div>
+            </div>
+
+            <div class="panel-right">
+                <button id="finslap" class="arrow-button"><img src="img/icons/shark.png" alt=""></button>
+                <button id="poisonedbubble" class="arrow-button"><img src="img/icons/skull.png" alt=""></button>
+                <button id="bubble" class="arrow-button"><img src="img/icons/bubble.png" alt=""></button>
+            </div>
+        </div>
+        <div id="panel-top" class="panel-top">
+            <img id="mute" class="d-none cursor" src="img/icons/sound-full-icon.png" alt="">
+            <img id="unmute" class="d-none cursor" src="img/icons/silent-line-icon.png" alt="">
+            <img id="fullscreen" class="d-none cursor"  src="img/icons/expand-icon.png" alt="">
+            <img id="settings" class="d-none cursor" src="img/icons/gamepad-icon.png" alt="">
+        </div>
+    </div>
+
+    <!-- FlatIcon  -->
+    <div class="d-none">
+        <a href="https://www.flaticon.com/free-icons/poison" title="poison icons">Poison icons created by Freepik -
+            Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/bubble" title="bubble icons">Bubble icons created by Freepik -
+            Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/shark" title="shark icons">Shark icons created by Royyan Wijaya -
+            Flaticon</a>
+    </div>
+
+    <!-- FlatIcon  -->
+
+    <script src="models/drawableObject.class.js"></script>
+    <script src="models/status-bar.class.js"></script>
+    <script src="models/status-barendboss.class.js"></script>
+    <script src="models/coin-bar.class.js"></script>
+    <script src="models/poison-bar.class.js"></script>
+    <script src="models/settings.class.js"></script>
+    <script src="models/fullscreen.class.js"></script>
+    <script src="models/sound.class.js"></script>
+    <script src="models/movableobject.class.js"></script>
+    <script src="models/pufferfish.class.js"></script>
+    <script src="models/jellyfish.class.js"></script>
+    <script src="models/jellyfish-yellow.class.js"></script>
+    <script src="models/dangerousjellyfish.class.js"></script>
+    <script src="models/character.class.js"></script>
+    <script src="models/world.class.js"></script>
+    <script src="models/endboss.class.js"></script>
+    <script src="models/backgroundobject.class.js"></script>
+    <script src="models/barriers/rock.class.js"></script>
+    <script src="models/barriers/rockvertical.class.js"></script>
+    <script src="models/barriers/tunnel.class.js"></script>
+    <script src="models/keyboard.class.js"></script>
+    <script src="models/level.class.js"></script>
+    <script src="models/shootableobject-class.js"></script>
+    <script src="models/bubbles.class.js"></script>
+    <script src="models/poisonedbubbles.class.js"></script>
+    <script src="models/coins.class.js"></script>
+    <script src="levels/level1.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+
+</html>
