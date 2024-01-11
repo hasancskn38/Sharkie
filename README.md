@@ -10,8 +10,6 @@ Help Sharkie overcome his biggest fear, Orcazar, in this exciting Jump-and-Run g
 
 ## Features
 
-Explore the exciting features of Sharkie:
-
 - **Collecting Items:** Gather coins or poison bottles.
 - **Move and Attack:** Swim and attack with Sharkie using your keyboard or on smaller devices, use the buttons.
 - **Settings:** Customize your gaming experience - go full screen, check the game settings, or mute the game.
