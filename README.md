@@ -12,7 +12,7 @@ Help Sharkie overcome his biggest fear, Orcazar, in this exciting Jump-and-Run g
 
 Explore the exciting features of Sharkie:
 
-- **Collecting Items:** Gather coins or avoid poison bottles.
+- **Collecting Items:** Gather coins or poison bottles.
 - **Move and Attack:** Swim and attack with Sharkie using your keyboard or on smaller devices, use the buttons.
 - **Settings:** Customize your gaming experience - go full screen, check the game settings, or mute the game.
 
@@ -39,14 +39,15 @@ I started by rendering a canvas to create the game's foundation. The process inv
 
 ## What I Learned
 
-Throughout this project, I gained valuable insights into object-oriented programming and game logic. Designing even a simple game highlighted the complexity involved. As a gamer, it deepened my appreciation for the intricacies of game development. Additionally, the OOP concepts learned here proved beneficial when later delving into Angular.
+Throughout this project, I gained valuable insights into object-oriented programming and game logic. Designing even a simple game highlighted the complexity involved. As a gamer, it deepened my appreciation for the complexity of game development and development in general. Additionally, the OOP concepts learned here proved beneficial when later delving into Angular.
 
 ## Potential Improvements
 
 Here are some ideas to enhance the game:
 
-- Add more levels.
-- Introduce different difficulty levels.
+- Add more levels
+- Introduce different difficulty levels
+- Go deeper in the game logic
 
 Feel free to contribute and make Sharkie even more exciting!
 
