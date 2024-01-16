@@ -114,11 +114,6 @@ function showNextImageInGame() {
     imagesInGame[currentImageIndexInGame].style.display = 'none';
     currentImageIndexInGame = (currentImageIndexInGame + 1) % imagesInGame.length;
 
-    // Check if currentImageIndex is 0, indicating that we have reached the end
-    if (currentImageIndexInGame === 0) {
-        currentImageIndexInGame = imagesInGame.length - 1; // Set currentImageIndex to the last image index
-    }
-
     imagesInGame[currentImageIndexInGame].style.display = 'block';
 }
 
